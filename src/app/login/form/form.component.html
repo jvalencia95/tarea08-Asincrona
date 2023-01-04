@@ -1,0 +1,37 @@
+<form>
+  <section class="col-md-4">
+    <label for="" class="form-label">Nombre</label>
+    <input type="text" class="form-control" #txtNombre>
+    <label for="" class="form-label">Apellidos</label>
+    <input type="text" class="form-control" #txtApellido>
+    <label for="" class="form-label">Edad</label>
+    <input type="number" class="form-control" #txtEdad>
+  </section>
+  <input class="mt-3 btn btn-primary" type="button" value="Enviar"
+    (click)="agregarPersona(txtNombre.value,txtApellido.value,txtEdad.value)">
+</form>
+
+<section class="mt-5">
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col-4">Nombre</th>
+        <th class="col-4">Apellido</th>
+        <th class="col-4">Edad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let persona of personas">
+        <td class="col-4">{{persona.nombre}}</td>
+        <td class="col-4">{{persona.apellido}}</td>
+        <td class="col-4" *ngIf="persona.edad>18; else menor">{{persona.edad}} - mayor de edad</td>
+
+        <ng-template #menor>
+          <td>
+            {{persona.edad}} - menor de edad
+          </td>
+        </ng-template>
+      </tr>
+    </tbody>
+  </table>
+</section>
